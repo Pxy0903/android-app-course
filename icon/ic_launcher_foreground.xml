@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- 五角星，居中，在66dp安全圈之内 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,24 l7.5,19.5 l21,1.5 l-15,12 l4.5,19.5 l-18,-10.5 l-18,10.5 l4.5,-19.5 l-15,-12 l21,-1.5 z" />
+</vector>
