@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Pengxiangyuan2024110126</string>
+    <!-- ======区2字符串====== -->
+    <string name="button_1">ADD TEXTVIEW</string>
+    <string name="scroll_container_desc">动态文本滚动区域</string>
+    <string name="dynamic_tv_prefix">This is a new textView:</string>
+
+    <!-- ======区2字符串====== -->
+    <string name="button">确定</string>
+    <string-array name="list">
+        <item>快速</item>
+        <item>容易</item>
+        <item>新语言</item>
+        <item>面向对象</item>
+    </string-array>
+</resources>
