@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">PXY2024110126</string>
+    <string name="input_something">input something</string>
+    <string name="second_activity">Second Activity</string>
+    <string name="third_activity">Third Activity</string>
+    <string name="four_activity">Four Activity</string>
+    <string name="fifth_activity">Fifth Activity</string>
+    <string name="okay">Okay</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="timer">00:00:00</string>
+    <string name="start">start</string>
+    <string name="stop">stop</string>
+    <string name="restart">restart</string>
+</resources>
