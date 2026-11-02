@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- 主题色 -->
+    <color name="primary">#3F51B5</color>
+    <color name="primary_dark">#303F9F</color>
+    <color name="accent">#FF4081</color>
+
+    <!-- 页面与卡片底色 -->
+    <color name="bg_page">#F0F2F7</color>
+    <color name="card_bg">#FFFFFFFF</color>
+    <color name="divider">#E4E8F0</color>
+
+    <!-- 文字与牌面 -->
+    <color name="text_primary">#1F2430</color>
+    <color name="text_secondary">#7A8194</color>
+    <color name="score_red">#E53935</color>
+    <color name="card_face_border">#C9D0E3</color>
+    <color name="card_matched_text">#B0B6C6</color>
+</resources>

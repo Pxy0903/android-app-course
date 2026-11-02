@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pxy2024110126</string>
+
+    <!-- 首页 -->
+    <string name="info_title">玩家信息</string>
+    <string name="edit_info">修改个人信息</string>
+    <string name="play_game">翻牌游戏</string>
+    <string name="name_format">姓名：%1$s</string>
+    <string name="gender_format">性别：%1$s</string>
+    <string name="phone_format">电话：%1$s</string>
+    <string name="high_score_format">当前最高分：%1$d</string>
+    <string name="high_score_zero">当前最高分：0</string>
+    <string name="new_record_format">新纪录！当前最高分 %1$d 分</string>
+    <string name="game_over_format">本局结束，得分 %1$d 分（当前最高分 %2$d 分）</string>
+    <string name="not_filled">未填写</string>
+    <string name="not_selected">未选择</string>
+    <string name="avatar_desc">玩家头像</string>
+
+    <!-- 修改信息页 -->
+    <string name="hint_name">请输入姓名</string>
+    <string name="hint_phone">请输入电话号码</string>
+    <string name="label_gender">性别</string>
+    <string name="male">男</string>
+    <string name="female">女</string>
+    <string name="save">保存</string>
+    <string name="cancel">取消</string>
+    <string name="save_success">个人信息已更新</string>
+
+    <!-- 翻牌游戏页 -->
+    <string name="score_format">得分：%1$d</string>
+    <string name="score_zero">得分：0</string>
+    <string name="pairs_format">已配对：%1$d 对</string>
+    <string name="pairs_zero">已配对：0 对</string>
+    <string name="rule_hint">规则：每翻一张 -1 分，点数相同 +15 分，花色相同 +4 分</string>
+    <string name="reset_game">重置游戏</string>
+    <string name="exit_game">退出</string>
+    <string name="win_message">太棒了，全部配对成功！</string>
+    <string name="card_desc">第 %1$d 张牌</string>
+</resources>

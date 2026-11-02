@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--
+        夜间模式下同样使用 .Bridge 主题，避免深色模式下按钮自定义背景失效、
+        并且保留 ActionBar（否则夜间模式会掉回 NoActionBar 的 Material3 主题）。
+    -->
+    <style name="Base.Theme.Lab4Cardgame" parent="Theme.MaterialComponents.DayNight.DarkActionBar.Bridge">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/accent</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:statusBarColor">@color/primary_dark</item>
+        <item name="android:windowBackground">@color/bg_page</item>
+        <item name="actionBarStyle">@style/AppActionBar</item>
+        <item name="actionBarTheme">@style/ThemeOverlay.AppActionBar</item>
+    </style>
+</resources>
