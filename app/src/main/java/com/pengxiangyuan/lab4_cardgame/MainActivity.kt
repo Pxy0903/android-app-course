@@ -4,7 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.pengxiangyuan.lab4_cardgame.databinding.ActivityMainBinding
 
@@ -59,6 +62,35 @@ class MainActivity : AppCompatActivity() {
         binding.btnPlay.setOnClickListener {
             startActivityForResult(Intent(this, GameActivity::class.java), REQUEST_GAME)
         }
+    }
+
+    /**
+     * 实验要求 4-3：在 MainActivity 上添加菜单（菜单资源 res/menu/menu_main.xml）。
+     * 菜单项统一放在 ActionBar 右侧，点击后弹出"关于"对话框。
+     */
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_about -> {
+                showAboutDialog()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    /** 弹出"关于"对话框：显示应用名称、姓名、学号与本次实验说明 */
+    private fun showAboutDialog() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.about_title)
+            .setMessage(getString(R.string.about_message, getString(R.string.app_name)))
+            .setPositiveButton(R.string.about_ok, null)
+            .show()
     }
 
     /** 把信息区的 TextView 刷新成当前玩家信息与最高分 */

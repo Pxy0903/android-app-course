@@ -7,7 +7,9 @@ import java.util.Random
  *
  * 结构与老师给的 Deck 一致：构造时按花色、点数生成整副牌，抽牌时用 Random 随机取走一张，
  * 这样既保证抽出的牌不重复，也不需要额外写洗牌方法。
- * 与老师原版的区别：多保留了 size（测试里要验证"一副牌是 52 张"），其余写法保持原样。
+ *
+ * 实验五新增 [drawCardWithRank]：三张牌的游戏按"同点数三张"分组发牌，
+ * 需要指定点数抽牌，才能保证每局都发得完、配得完。
  */
 class Deck {
 
@@ -33,5 +35,12 @@ class Deck {
             randomCard = cards.removeAt(random.nextInt(cards.size))
         }
         return randomCard
+    }
+
+    /** 按点数随机抽一张牌（同点数的四张里随便取一张），没有该点数时返回 null */
+    fun drawCardWithRank(rank: String): Card? {
+        val candidates = cards.indices.filter { cards[it].rank == rank }
+        if (candidates.isEmpty()) return null
+        return cards.removeAt(candidates[random.nextInt(candidates.size)])
     }
 }

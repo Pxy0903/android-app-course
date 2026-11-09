@@ -28,11 +28,12 @@ class GameUiTest {
         }
     }
 
-    /** 游戏页：得分栏与底部按钮可见 */
+    /** 游戏页：得分栏、RecyclerView 与底部按钮可见 */
     @Test
     fun gameScreen_showsScoreAndButtons() {
         ActivityScenario.launch(GameActivity::class.java).use {
             onView(withId(R.id.tvScore)).check(matches(isDisplayed()))
+            onView(withId(R.id.rvCards)).check(matches(isDisplayed()))
             onView(withId(R.id.btnReset)).check(matches(isDisplayed()))
             onView(withId(R.id.btnExit)).check(matches(isDisplayed()))
         }

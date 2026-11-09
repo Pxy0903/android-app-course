@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    翻牌游戏页（View 层）。
+    牌面不再由代码动态 new Button，而是交给 RecyclerView + CardAdapter 渲染：
+    竖屏 6 行 × 4 列，横屏 4 行 × 6 列，行列数由 GameActivity 按屏幕方向设置。
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="12dp">
+    android:padding="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="2dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -23,10 +28,10 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvPairs"
+            android:id="@+id/tvSets"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/pairs_zero"
+            android:text="@string/sets_zero"
             android:textColor="@color/text_secondary"
             android:textSize="15sp" />
     </LinearLayout>
@@ -41,26 +46,28 @@
         android:textColor="@color/text_secondary"
         android:textSize="12sp" />
 
-    <!-- 存放 16 张牌的容器，卡片由代码动态生成 -->
-    <GridLayout
-        android:id="@+id/gridLayout"
+    <!-- 24 张牌的容器：行列数由 GridLayoutManager 决定 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCards"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="1" />
-
+        android:layout_marginTop="6dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:scrollbars="none" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btnReset"
             style="@style/Widget.App.Button.Outline"
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="48dp"
             android:layout_marginEnd="6dp"
             android:layout_weight="1"
             android:text="@string/reset_game" />
@@ -69,7 +76,7 @@
             android:id="@+id/btnExit"
             style="@style/Widget.App.Button.Primary"
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="48dp"
             android:layout_marginStart="6dp"
             android:layout_weight="1"
             android:text="@string/exit_game" />
