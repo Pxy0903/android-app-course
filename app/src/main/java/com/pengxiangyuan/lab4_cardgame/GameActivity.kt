@@ -16,8 +16,8 @@ import com.pengxiangyuan.lab4_cardgame.model.CardMatchingGame
  * 职责（实验要求 4-d 与 4-c）：
  *  1. 持有 Model（[CardMatchingGame]），并把 24 张牌交给 RecyclerView + [CardAdapter] 渲染（View）；
  *  2. 接收适配器回调的点击 → 调用模型 → 通知适配器刷新，实现 MVC 的单向数据流；
- *  3. 按屏幕方向切换列数：竖屏 4 列 × 6 行，横屏 6 列 × 4 行，格子高度按可用高度均分，
- *     保证一屏放得下、不需要滚动；
+ *  3. 按屏幕方向切换列数：竖屏 4 列、横屏 6 列；卡片尺寸固定，放不下时只上下滚动，
+ *     横屏时一行 6 张不会被截断，也不会出现左右滚动；
  *  4. 提供"重置游戏"（调用 Model 的 reset）与"退出"；
  *  5. 按"退出"即本局结束，用 setResult 把本局得分反向传回首页结算最高分。
  *
@@ -35,9 +35,6 @@ class GameActivity : AppCompatActivity() {
 
     /** 防止全部配对后重复弹出 Toast */
     private var winToastShown = false
-
-    /** 上一次排版时棋盘的可用高度，用来判断是否需要重排（首次布局、横竖屏切换） */
-    private var lastBoardHeight = 0
 
     /** 三张不匹配的牌停留一会儿后自动翻回 */
     private val flipBackRunnable = Runnable {
@@ -65,15 +62,8 @@ class GameActivity : AppCompatActivity() {
         binding.rvCards.itemAnimator = null // 关闭动画，重置/翻回时不会闪
         updateHeader()
 
-        // 3. 每次布局完成后检查 RecyclerView 的高度：首次布局和旋转屏幕都会触发，
-        //    高度变了就按新的行数重排格子（布局过程中不能直接 notify，所以 post 到下一帧）
-        binding.rvCards.viewTreeObserver.addOnGlobalLayoutListener {
-            val height = binding.rvCards.height
-            if (height > 0 && height != lastBoardHeight) {
-                lastBoardHeight = height
-                binding.rvCards.post { if (!isFinishing) applyGridLayout() }
-            }
-        }
+        // 3. 按屏幕方向决定每行几张牌（竖屏 4 张、横屏 6 张）；
+        //    卡片尺寸固定，24 张放不下时 RecyclerView 自动上下滚动
         applyGridLayout()
 
         // 4. 重置游戏：清掉待执行的翻回任务，重新发牌
@@ -95,8 +85,9 @@ class GameActivity : AppCompatActivity() {
     }
 
     /**
-     * 按当前屏幕方向设置 GridLayoutManager 的列数，并把行数告诉适配器，
-     * 适配器会按 RecyclerView 的实际高度均分格子，让 24 张牌刚好铺满一屏。
+     * 按当前屏幕方向设置 GridLayoutManager 的列数：竖屏 4 列、横屏 6 列。
+     * 列数决定了每张牌的宽度（屏幕宽度均分），高度在 item_layout 里固定为 100dp，
+     * 所以卡片不会被拉伸；放不下时 RecyclerView 只做上下滚动。
      */
     private fun applyGridLayout() {
         val columns = if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -104,21 +95,13 @@ class GameActivity : AppCompatActivity() {
         } else {
             PORTRAIT_COLUMNS
         }
-        val rows = CARD_COUNT / columns
 
         val rv = binding.rvCards
         val layoutManager = rv.layoutManager as? GridLayoutManager
         if (layoutManager == null || layoutManager.spanCount != columns) {
             rv.layoutManager = GridLayoutManager(this, columns)
         }
-
-        adapter.rows = rows
-        adapter.boardHeightPx = rv.height - rv.paddingTop - rv.paddingBottom
-        adapter.itemMarginPx = dpToPx(ITEM_MARGIN_DP.toFloat())
-        adapter.refresh()
     }
-
-    private fun dpToPx(dp: Float): Int = (dp * resources.displayMetrics.density + 0.5f).toInt()
 
     /** 点击第 index 张牌：交给 Model 处理，然后刷新界面 */
     private fun onCardClicked(index: Int) {
@@ -181,8 +164,5 @@ class GameActivity : AppCompatActivity() {
 
         /** 不匹配的牌停留时间（毫秒） */
         const val FLIP_BACK_DELAY_MS = 800L
-
-        /** 卡片外边距，必须与 item_layout.xml 里 MaterialCardView 的 layout_margin 保持一致 */
-        const val ITEM_MARGIN_DP = 3
     }
 }

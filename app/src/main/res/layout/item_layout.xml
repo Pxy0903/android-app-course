@@ -3,11 +3,14 @@
     RecyclerView 的单个牌面格子（View 层）。
     外层 MaterialCardView 负责圆角、阴影和间距；内部叠放"牌背图片"和"牌面文字"，
     由 CardAdapter 根据牌的状态切换显示哪一个。
+
+    高度固定为 100dp，不随屏幕高度或行数伸缩：牌多放不下时由 RecyclerView 上下滚动，
+    保证任何时候每张牌的尺寸都一样。
 -->
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="100dp"
     android:layout_margin="3dp"
     app:cardBackgroundColor="@color/card_bg"
     app:cardCornerRadius="10dp"

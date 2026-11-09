@@ -17,23 +17,14 @@ import com.pengxiangyuan.lab4_cardgame.model.CardMatchingGame
  *  3. 点击事件通过 [onCardClickListener] 回调交给 Controller（GameActivity），
  *     适配器自己不修改 Model，保证 MVC 的职责边界。
  *
- * 格子高度不写死：绑定时取 RecyclerView 当前可用高度除以 [rows]，
- * 再扣掉 item_layout 里 3dp 的上下外边距，竖屏 6 行、横屏 4 行都能刚好铺满一屏。
+ * 格子尺寸固定写在 item_layout（高 100dp、宽按列数均分），适配器不再按屏幕高度调整，
+ * 一屏放不下时由 RecyclerView 上下滚动。
  */
 class CardAdapter(private val game: CardMatchingGame) :
     RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
 
     /** 点击回调：参数是被点击牌的下标，由 Activity 设置 */
     var onCardClickListener: ((Int) -> Unit)? = null
-
-    /** 当前方向下的行数：竖屏 6 行、横屏 4 行，由 Activity 设置 */
-    var rows: Int = PORTRAIT_ROWS
-
-    /** 棋盘可用高度（px），由 Activity 在布局完成后写入，适配器据此均分每行高度 */
-    var boardHeightPx: Int = 0
-
-    /** 每张卡片单边的外边距（px），需与 item_layout.xml 的 3dp 一致 */
-    var itemMarginPx: Int = 0
 
     class CardViewHolder(val binding: ItemLayoutBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -48,7 +39,6 @@ class CardAdapter(private val game: CardMatchingGame) :
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
         val binding = holder.binding
-        applyItemHeight(holder)
 
         val card = game.cardAtIndex(position)
         val context = binding.root.context
@@ -95,29 +85,8 @@ class CardAdapter(private val game: CardMatchingGame) :
         binding.root.isClickable = !card.isMatched && !card.isChosen
     }
 
-    /**
-     * 按棋盘可用高度把格子高度均分给 [rows] 行。
-     * 这里不用 itemView.parent 取高度：onBindViewHolder 执行时格子还没有挂到 RecyclerView 上，
-     * parent 为 null，所以高度由 Activity 在布局完成后通过 [boardHeightPx] 传进来。
-     */
-    private fun applyItemHeight(holder: CardViewHolder) {
-        if (boardHeightPx <= 0 || rows <= 0) return
-        val height = boardHeightPx / rows - itemMarginPx * 2
-        if (height <= 0) return
-        val params = holder.binding.root.layoutParams
-        if (params.height != height) {
-            params.height = height
-            holder.binding.root.layoutParams = params
-        }
-    }
-
     /** 重置或旋转屏幕后让 RecyclerView 重新绑定全部格子 */
     fun refresh() {
         notifyDataSetChanged()
-    }
-
-    companion object {
-        /** 竖屏行数（4 列 × 6 行 = 24 张） */
-        const val PORTRAIT_ROWS = 6
     }
 }

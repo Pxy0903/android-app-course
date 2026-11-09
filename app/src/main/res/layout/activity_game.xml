@@ -2,7 +2,7 @@
 <!--
     翻牌游戏页（View 层）。
     牌面不再由代码动态 new Button，而是交给 RecyclerView + CardAdapter 渲染：
-    竖屏 6 行 × 4 列，横屏 4 行 × 6 列，行列数由 GameActivity 按屏幕方向设置。
+    竖屏每行 4 张、横屏每行 6 张，卡片尺寸固定，一屏放不下时只上下滚动。
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
