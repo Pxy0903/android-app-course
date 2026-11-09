@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Pxy2024110126</string>
+    <string name="app_name">彭湘媛2024110126</string>
 
     <!-- 首页 -->
     <string name="info_title">玩家信息</string>
@@ -20,7 +20,7 @@
     <!-- 首页菜单与"关于"对话框 -->
     <string name="menu_about">关于</string>
     <string name="about_title">关于本应用</string>
-    <string name="about_message">应用名称：%1$s\n\n姓名：彭湘媛\n学号：2024110126\n\n实验五：RecyclerView 翻牌游戏\n采用 MVC 架构，用 RecyclerView + Adapter 显示 24 张牌，三张同点数为一组，竖屏 6 行 4 列、横屏 4 行 6 列。</string>
+    <string name="about_message">应用名称：%1$s\n\n姓名：彭湘媛\n学号：2024110126\n\n实验五：RecyclerView 翻牌游戏\n采用 MVC 架构，用 RecyclerView + Adapter 显示 24 张牌，三张同点数为一组；竖屏每行 4 张、横屏每行 6 张，卡片尺寸固定，可上下滚动。</string>
     <string name="about_ok">确定</string>
 
     <!-- 修改信息页 -->

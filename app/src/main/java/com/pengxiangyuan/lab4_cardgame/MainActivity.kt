@@ -42,7 +42,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.title = getString(R.string.info_title)
+        // 提交要求：应用标题显示"姓名+学号"
+        supportActionBar?.title = getString(R.string.app_name)
 
         sp = getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
         highScore = sp.getInt(KEY_HIGH_SCORE, 0)
