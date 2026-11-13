@@ -9,7 +9,7 @@
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="48dp"
         android:background="@color/toolbar_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +21,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        android:padding="16dp"
+        android:padding="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,6 +63,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/hint_number"
+                            android:imeOptions="flagNoExtractUi"
                             android:inputType="numberDecimal|numberSigned"
                             android:maxLines="1"
                             android:textColor="@color/text_primary"
@@ -83,6 +84,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/hint_number"
+                            android:imeOptions="flagNoExtractUi"
                             android:inputType="numberDecimal|numberSigned"
                             android:maxLines="1"
                             android:textColor="@color/text_primary"
@@ -155,7 +157,7 @@
         </ScrollView>
 
         <Space
-            android:layout_width="12dp"
+            android:layout_width="8dp"
             android:layout_height="match_parent" />
 
         <com.google.android.material.card.MaterialCardView
@@ -166,12 +168,14 @@
             app:cardCornerRadius="16dp"
             app:cardElevation="0dp">
 
+            <!-- 内容按自身高度垂直居中：横屏弹出软键盘、可用高度变小时结果也不会被裁掉 -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:padding="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
