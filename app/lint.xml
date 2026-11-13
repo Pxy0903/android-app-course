@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lint>
+    <!-- 项目按课程模板固定使用 AGP 9.3.3，忽略联网检测到的"有新版本可用"提示，
+         该提示与代码质量无关，也不应在每次构建时产生波动。 -->
+    <issue id="AndroidGradlePluginVersion" severity="ignore" />
+</lint>

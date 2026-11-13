@@ -17,6 +17,11 @@
     <string name="operator_subtract">－ 减</string>
     <string name="operator_multiply">× 乘</string>
     <string name="operator_divide">÷ 除</string>
+    <!-- 横屏时运算符行空间有限，使用纯符号避免文字被挤压 -->
+    <string name="operator_add_short">＋</string>
+    <string name="operator_subtract_short">－</string>
+    <string name="operator_multiply_short">×</string>
+    <string name="operator_divide_short">÷</string>
     <string name="action_calculate">计 算</string>
     <string name="label_result">计算结果</string>
     <string name="result_placeholder">—</string>
