@@ -22,5 +22,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "HalfText"
+rootProject.name = "HalfText_PengXiangYuan"
 include(":app")

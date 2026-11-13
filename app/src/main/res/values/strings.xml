@@ -1,3 +1,37 @@
 <resources>
-    <string name="app_name">HalfText</string>
+    <!-- 第一个 Activity 的标题：姓名 + 学号 -->
+    <string name="app_name">彭湘媛2024110126</string>
+    <string name="title_history">计算历史</string>
+
+    <!-- 菜单 -->
+    <string name="menu_history">历史记录</string>
+    <string name="menu_clear">清空历史</string>
+    <string name="back">返回</string>
+
+    <!-- 计算页 -->
+    <string name="label_first_number">第一个数</string>
+    <string name="label_second_number">第二个数</string>
+    <string name="hint_number">请输入数字</string>
+    <string name="label_operator">选择运算</string>
+    <string name="operator_add">＋ 加</string>
+    <string name="operator_subtract">－ 减</string>
+    <string name="operator_multiply">× 乘</string>
+    <string name="operator_divide">÷ 除</string>
+    <string name="action_calculate">计 算</string>
+    <string name="label_result">计算结果</string>
+    <string name="result_placeholder">—</string>
+    <string name="tip_history">计算结果会自动保存，点击右上角菜单可查看历史记录</string>
+
+    <!-- 输入与运算提示 -->
+    <string name="error_empty_number">请输入数字</string>
+    <string name="error_invalid_number">请输入有效数字</string>
+    <string name="error_no_operator">请选择运算符</string>
+    <string name="error_divide_by_zero">除数不能为 0</string>
+
+    <!-- 历史页 -->
+    <string name="history_empty">暂无计算记录</string>
+    <string name="history_cleared">已清空历史记录</string>
+    <string name="history_expression_format">%1$s %2$s %3$s</string>
+    <string name="history_expression_with_equal">%1$s =</string>
+    <string name="history_result_format">结果：%1$s</string>
 </resources>
