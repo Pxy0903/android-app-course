@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    namespace = "com.pengxiangyuan.lab4_cardgame"
+    namespace = "com.pengxiangyuan.lab6fragment"
     compileSdk {
         version = release(37)
     }
 
     defaultConfig {
-        applicationId = "com.pengxiangyuan.lab4_cardgame"
+        applicationId = "com.pengxiangyuan.lab6fragment"
         minSdk = 24
         targetSdk = 37
         versionCode = 1

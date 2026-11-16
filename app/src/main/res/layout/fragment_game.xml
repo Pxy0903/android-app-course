@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    翻牌游戏页（View 层）。
-    牌面不再由代码动态 new Button，而是交给 RecyclerView + CardAdapter 渲染：
-    竖屏每行 4 张、横屏每行 6 张，卡片尺寸固定，一屏放不下时只上下滚动。
+    第 2、3 个 Fragment 共用的翻牌游戏布局（View 层）。
+    同一个 GameFragment 通过 newInstance 的参数区分"两张牌"与"三张牌"两种玩法；
+    牌面交给 RecyclerView + CardAdapter 渲染：竖屏每行 4 张、横屏每行 6 张，
+    卡片尺寸固定，一屏放不下时只上下滚动。
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -36,13 +37,13 @@
             android:textSize="15sp" />
     </LinearLayout>
 
-    <!-- 计分规则提示 -->
+    <!-- 计分规则提示（两张牌 / 三张牌的提示文字由代码按玩法切换） -->
     <TextView
         android:id="@+id/tvRule"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:text="@string/rule_hint"
+        android:text="@string/rule_hint_3card"
         android:textColor="@color/text_secondary"
         android:textSize="12sp" />
 
@@ -57,28 +58,11 @@
         android:overScrollMode="never"
         android:scrollbars="none" />
 
-    <LinearLayout
+    <Button
+        android:id="@+id/btnReset"
+        style="@style/Widget.App.Button.Outline"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="8dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btnReset"
-            style="@style/Widget.App.Button.Outline"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginEnd="6dp"
-            android:layout_weight="1"
-            android:text="@string/reset_game" />
-
-        <Button
-            android:id="@+id/btnExit"
-            style="@style/Widget.App.Button.Primary"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="6dp"
-            android:layout_weight="1"
-            android:text="@string/exit_game" />
-    </LinearLayout>
+        android:text="@string/reset_game" />
 </LinearLayout>

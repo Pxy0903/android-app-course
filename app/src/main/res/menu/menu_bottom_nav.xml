@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 底部导航的 3 个标签：对应个人信息 / 两张牌游戏 / 三张牌游戏 三个 Fragment -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_personal_info"
+        android:icon="@drawable/ic_person"
+        android:title="@string/nav_personal_info" />
+
+    <item
+        android:id="@+id/nav_game_2"
+        android:icon="@drawable/ic_cards_2"
+        android:title="@string/nav_game_2" />
+
+    <item
+        android:id="@+id/nav_game_3"
+        android:icon="@drawable/ic_cards_3"
+        android:title="@string/nav_game_3" />
+</menu>

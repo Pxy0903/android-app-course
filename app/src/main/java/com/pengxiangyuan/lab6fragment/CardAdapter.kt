@@ -1,12 +1,12 @@
-package com.pengxiangyuan.lab4_cardgame
+package com.pengxiangyuan.lab6fragment
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.pengxiangyuan.lab4_cardgame.databinding.ItemLayoutBinding
-import com.pengxiangyuan.lab4_cardgame.model.CardMatchingGame
+import com.pengxiangyuan.lab6fragment.databinding.ItemLayoutBinding
+import com.pengxiangyuan.lab6fragment.model.CardMatchingGame
 
 /**
  * View 层：RecyclerView 的适配器。
@@ -14,7 +14,7 @@ import com.pengxiangyuan.lab4_cardgame.model.CardMatchingGame
  * 职责（实验要求 4-b）：
  *  1. 从 [RecyclerView.Adapter] 派生，重载 [onCreateViewHolder] / [getItemCount] / [onBindViewHolder]；
  *  2. 只负责"把 Model 里第 position 张牌画到格子里"，不写任何游戏规则；
- *  3. 点击事件通过 [onCardClickListener] 回调交给 Controller（GameActivity），
+ *  3. 点击事件通过 [onCardClickListener] 回调交给 Controller（GameFragment），
  *     适配器自己不修改 Model，保证 MVC 的职责边界。
  *
  * 格子尺寸固定写在 item_layout（高 100dp、宽按列数均分），适配器不再按屏幕高度调整，

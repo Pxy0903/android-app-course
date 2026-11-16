@@ -1,4 +1,4 @@
-package com.pengxiangyuan.lab4_cardgame.model
+package com.pengxiangyuan.lab6fragment.model
 
 import java.util.Random
 

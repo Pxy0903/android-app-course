@@ -2,25 +2,25 @@
 <resources>
     <string name="app_name">彭湘媛2024110126</string>
 
-    <!-- 首页 -->
+    <!-- 底部导航（3 个 Fragment 标签） -->
+    <string name="nav_personal_info">个人信息</string>
+    <string name="nav_game_2">两张牌游戏</string>
+    <string name="nav_game_3">三张牌游戏</string>
+
+    <!-- 个人信息 Fragment -->
     <string name="info_title">玩家信息</string>
     <string name="edit_info">修改个人信息</string>
-    <string name="play_game">翻牌游戏</string>
     <string name="name_format">姓名：%1$s</string>
     <string name="gender_format">性别：%1$s</string>
     <string name="phone_format">电话：%1$s</string>
-    <string name="high_score_format">当前最高分：%1$d</string>
-    <string name="high_score_zero">当前最高分：0</string>
-    <string name="new_record_format">新纪录！当前最高分 %1$d 分</string>
-    <string name="game_over_format">本局结束，得分 %1$d 分（当前最高分 %2$d 分）</string>
     <string name="not_filled">未填写</string>
     <string name="not_selected">未选择</string>
     <string name="avatar_desc">玩家头像</string>
 
-    <!-- 首页菜单与"关于"对话框 -->
+    <!-- 菜单与"关于"对话框 -->
     <string name="menu_about">关于</string>
     <string name="about_title">关于本应用</string>
-    <string name="about_message">应用名称：%1$s\n\n姓名：彭湘媛\n学号：2024110126\n\n实验五：RecyclerView 翻牌游戏\n采用 MVC 架构，用 RecyclerView + Adapter 显示 24 张牌，三张同点数为一组；竖屏每行 4 张、横屏每行 6 张，卡片尺寸固定，可上下滚动。</string>
+    <string name="about_message">应用名称：%1$s\n\n姓名：彭湘媛\n学号：2024110126\n\n实验六：多 Fragment 应用\n采用 Fragment 重构：底部导航切换 3 个 Fragment——个人信息、两张牌翻牌游戏、三张牌翻牌游戏；个人信息与两局牌局都用对象序列化保存，退出程序后再打开可以恢复。</string>
     <string name="about_ok">确定</string>
 
     <!-- 修改信息页 -->
@@ -31,16 +31,16 @@
     <string name="female">女</string>
     <string name="save">保存</string>
     <string name="cancel">取消</string>
-    <string name="save_success">个人信息已更新</string>
+    <string name="save_success">个人信息已保存</string>
 
-    <!-- 翻牌游戏页 -->
+    <!-- 翻牌游戏 Fragment -->
     <string name="score_format">得分：%1$d</string>
     <string name="score_zero">得分：0</string>
     <string name="sets_format">已配对：%1$d / %2$d 组</string>
     <string name="sets_zero">已配对：0 / 8 组</string>
-    <string name="rule_hint">规则：每翻一张 -1 分，三张点数相同 +40 分，配完 8 组获胜</string>
+    <string name="rule_hint_2card">规则：每翻一张 -1 分，两张点数相同 +15 分、花色相同 +4 分，对不上自动翻回</string>
+    <string name="rule_hint_3card">规则：每翻一张 -1 分，三张点数相同 +40 分，配完 8 组获胜</string>
     <string name="reset_game">重置游戏</string>
-    <string name="exit_game">退出</string>
     <string name="win_message">太棒了，全部配对成功！</string>
     <string name="card_desc">第 %1$d 张牌</string>
     <string name="card_back_desc">牌背</string>

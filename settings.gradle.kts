@@ -22,6 +22,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Lab4-Cardgame"
+rootProject.name = "Lab6-ManyFragment"
 include(":app")
  

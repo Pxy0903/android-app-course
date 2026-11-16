@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/image1"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Lab4Cardgame">
+        android:theme="@style/Theme.Lab6Fragment">
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -27,12 +27,6 @@
             android:name=".EditActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
-
-        <!-- 翻牌游戏页：横竖屏切换由 Activity 自己处理，避免旋转时重建导致牌局重置 -->
-        <activity
-            android:name=".GameActivity"
-            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden"
-            android:exported="false" />
     </application>
 
 </manifest>

@@ -1,32 +1,39 @@
-package com.pengxiangyuan.lab4_cardgame.model
+package com.pengxiangyuan.lab6fragment.model
+
+import java.io.Serializable
 
 /**
  * Model 层：一张扑克牌。
  *
- * 实验五在实验四的基础上把游戏改成"三张牌一组"：
- *  - [match] 一次可能收到 1 张或 2 张参照牌；
- *  - 传 1 张（两张牌比较）时沿用实验四的规则：点数 15 分 / 花色 4 分；
- *  - 传 2 张（三张牌比较）时采用本次设计的规则：三张点数全部相同才算配对成功，得 40 分。
+ * 实验六要求翻牌游戏的状态用"对象序列化 + 文件存储"保存，
+ * 因此 [Card] 实现 [Serializable]，随 [CardMatchingGame] 一起写入私有文件，
+ * 退出程序后再打开即可恢复牌局。
  *
- * 花色、点数改成对外只读（val），方便 Model 层按点数发牌、测试按点数分组。
+ * 配牌规则兼容两种玩法：
+ *  - 两张牌玩法：传 1 张参照牌，点数 15 分 / 花色 4 分（实验四规则）；
+ *  - 三张牌玩法：传 2 张参照牌，三张点数全部相同才配对成功，得 40 分（实验五规则）。
  */
 class Card(
     val suit: String,
     val rank: String,
     var isChosen: Boolean = false,
     var isMatched: Boolean = false
-) {
+) : Serializable {
+
     companion object {
+        /** 序列化版本号：类结构变化时保持旧文件可读 */
+        private const val serialVersionUID = 1L
+
         val rankStrings = arrayOf("A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K")
         val validSuits = arrayOf("♥", "♦", "♠", "♣")
 
-        /** 两张牌点数相同时的得分（实验四规则，保留） */
+        /** 两张牌点数相同时的得分（两张牌玩法） */
         const val MATCH_BONUS = 15
 
-        /** 两张牌花色相同时的得分（实验四规则，保留） */
+        /** 两张牌花色相同时的得分（两张牌玩法） */
         const val SUIT_BONUS = 4
 
-        /** 三张牌点数全部相同时的得分（实验五规则） */
+        /** 三张牌点数全部相同时的得分（三张牌玩法） */
         const val THREE_MATCH_BONUS = 40
     }
 
