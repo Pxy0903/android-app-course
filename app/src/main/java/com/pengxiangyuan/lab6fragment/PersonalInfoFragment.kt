@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.pengxiangyuan.lab6fragment.databinding.FragmentPersonalInfoBinding
+import com.pengxiangyuan.lab6fragment.model.CardMatchingGame
 import com.pengxiangyuan.lab6fragment.model.PersonInfo
 import java.io.ObjectInputStream
-import java.io.ObjectOutputStream
 
 /**
  * Controller 层：个人信息 Fragment（实验六的第 1 个 Fragment）。
@@ -21,7 +21,10 @@ import java.io.ObjectOutputStream
  *  2. 点击"修改个人信息"打开 [EditActivity]；
  *  3. 历史信息采用序列化存储：[EditActivity] 保存时用 ObjectOutputStream 把
  *     [PersonInfo] 对象写入私有文件，这里用 ObjectInputStream 读回，
- *     退出程序后再打开仍能恢复上一次填写的内容。
+ *     退出程序后再打开仍能恢复上一次填写的内容；
+ *  4. "修改个人信息"按钮下方展示两张牌 / 三张牌两种玩法的最高分纪录：
+ *     最高分记录在 [CardMatchingGame.bestScore] 里，随牌局一起序列化保存，
+ *     每次进入本界面都从对应的存档文件读回并刷新显示。
  */
 class PersonalInfoFragment : Fragment() {
 
@@ -59,12 +62,21 @@ class PersonalInfoFragment : Fragment() {
         _binding = null
     }
 
-    /** 把文件里的玩家信息刷新到界面上 */
+    /** 把文件里的玩家信息与两局牌的最高分纪录刷新到界面上 */
     private fun refreshViews() {
         val notFilled = getString(R.string.not_filled)
         binding.tvName.text = getString(R.string.name_format, info.name.ifBlank { notFilled })
         binding.tvGender.text = getString(R.string.gender_format, info.gender.ifBlank { notFilled })
         binding.tvPhone.text = getString(R.string.phone_format, info.phone.ifBlank { notFilled })
+
+        binding.tvBestScore2.text = getString(
+            R.string.best_score_2card_format,
+            loadBestScore(CardMatchingGame.TWO_CARD_GROUP)
+        )
+        binding.tvBestScore3.text = getString(
+            R.string.best_score_3card_format,
+            loadBestScore(CardMatchingGame.THREE_CARD_GROUP)
+        )
     }
 
     /**
@@ -81,6 +93,29 @@ class PersonalInfoFragment : Fragment() {
             saved
         } catch (e: Exception) {
             PersonInfo()
+        }
+    }
+
+    /**
+     * 读取某种玩法的最高分纪录：打开该玩法的牌局存档（game2 / game3），
+     * 用 ObjectInputStream 还原 [CardMatchingGame]，取其中的 bestScore。
+     * 还没玩过（没有存档）时返回 0。
+     */
+    private fun loadBestScore(cardsPerSet: Int): Int {
+        val fileName = if (cardsPerSet == CardMatchingGame.TWO_CARD_GROUP) {
+            GameFragment.FILE_GAME_2
+        } else {
+            GameFragment.FILE_GAME_3
+        }
+        return try {
+            val input = requireActivity().openFileInput(fileName)
+            val objectInputStream = ObjectInputStream(input)
+            val game = objectInputStream.readObject() as? CardMatchingGame
+            objectInputStream.close()
+            input.close()
+            game?.bestScore ?: 0
+        } catch (e: Exception) {
+            0
         }
     }
 

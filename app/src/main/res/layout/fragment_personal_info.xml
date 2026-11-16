@@ -64,5 +64,27 @@
             android:layout_height="52dp"
             android:layout_marginTop="24dp"
             android:text="@string/edit_info" />
+
+        <!-- 最高分纪录（两张牌 / 三张牌各自的历史最高分，随牌局一起序列化保存） -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="14dp"
+            android:background="@color/divider" />
+
+        <TextView
+            android:id="@+id/tvBestScore2"
+            style="@style/Text.Info"
+            android:text="@string/best_score_2card_zero"
+            android:textColor="@color/score_red"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvBestScore3"
+            style="@style/Text.Info"
+            android:text="@string/best_score_3card_zero"
+            android:textColor="@color/score_red"
+            android:textStyle="bold" />
     </LinearLayout>
 </ScrollView>

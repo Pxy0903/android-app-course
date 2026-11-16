@@ -17,6 +17,12 @@
     <string name="not_selected">未选择</string>
     <string name="avatar_desc">玩家头像</string>
 
+    <!-- 最高分纪录 -->
+    <string name="best_score_2card_format">两张牌配对最高分：%1$d</string>
+    <string name="best_score_3card_format">三张牌配对最高分：%1$d</string>
+    <string name="best_score_2card_zero">两张牌配对最高分：0</string>
+    <string name="best_score_3card_zero">三张牌配对最高分：0</string>
+
     <!-- 菜单与"关于"对话框 -->
     <string name="menu_about">关于</string>
     <string name="about_title">关于本应用</string>

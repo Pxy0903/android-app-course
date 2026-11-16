@@ -35,6 +35,13 @@ class CardMatchingGame(
     var isWaitingForFlipBack = false
         private set
 
+    /**
+     * 历史最高分：当前得分超过它时自动刷新，随牌局一起序列化保存，
+     * 因此重置游戏、退出程序后纪录都不会丢；个人信息 Fragment 会读取它来展示最高分纪录。
+     */
+    var bestScore = 0
+        private set
+
     private val cards: MutableList<Card> = mutableListOf()
 
     /** 等着翻回去的一组牌 */
@@ -120,6 +127,9 @@ class CardMatchingGame(
             pendingFlipBack = openedCards.toTypedArray()
             isWaitingForFlipBack = true
         }
+
+        // 得分超过历史最高分就刷新纪录
+        if (score > bestScore) bestScore = score
     }
 
     /** 把刚才那组对不上的牌翻回背面（由界面延时调用） */
@@ -132,7 +142,7 @@ class CardMatchingGame(
         isWaitingForFlipBack = false
     }
 
-    /** 重新开始一局：重新发牌，并把分数、组数、等待状态全部清零 */
+    /** 重新开始一局：重新发牌，并把分数、组数、等待状态清零（历史最高分 bestScore 保留） */
     fun reset() {
         dealCards()
         score = 0

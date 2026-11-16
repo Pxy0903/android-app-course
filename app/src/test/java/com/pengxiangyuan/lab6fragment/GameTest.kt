@@ -223,6 +223,31 @@ class GameTest {
         assertFalse(game.isWaitingForFlipBack)
     }
 
+    /** 最高分纪录：超过时自动刷新；重置游戏后纪录保留（随牌局序列化保存） */
+    @Test
+    fun bestScore_tracksMaxAndSurvivesReset() {
+        val game = CardMatchingGame(CardMatchingGame.DEFAULT_CARD_COUNT, CardMatchingGame.THREE_CARD_GROUP)
+        val triple = findGroup(game)
+        triple.forEach { game.chooseCardAtIndex(it) }
+
+        val bestAfterMatch = Card.THREE_MATCH_BONUS - 3 * CardMatchingGame.COST_TO_CHOOSE
+        assertEquals(bestAfterMatch, game.bestScore)
+
+        // 再翻开一张扣 1 分，但不会刷新历史最高分
+        val other = (0 until game.cardCount).first { !game.cardAtIndex(it).isMatched && !game.cardAtIndex(it).isChosen }
+        game.chooseCardAtIndex(other)
+        assertEquals(bestAfterMatch, game.bestScore)
+
+        // 重置游戏：得分清零，纪录保留
+        game.reset()
+        assertEquals(0, game.score)
+        assertEquals(bestAfterMatch, game.bestScore)
+
+        // 序列化往返后纪录不丢
+        val saved = writeAndRead(game)
+        assertEquals(bestAfterMatch, saved!!.bestScore)
+    }
+
     // ---------- 实验六核心：对象序列化 ----------
 
     @Test
